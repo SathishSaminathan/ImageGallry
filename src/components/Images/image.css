@@ -1,0 +1,11 @@
+.image_style {
+  width: 400px;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 10px solid white;
+  -webkit-box-shadow: 0 0 15px 0px #cbc5c5;
+          box-shadow: 0 0 15px 0px #cbc5c5;
+  margin: 20px;
+}
+/*# sourceMappingURL=image.css.map */
