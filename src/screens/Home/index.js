@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+import './Home.css';
 import firebase from "../../config/firebase";
 import Header from "../../components/Header";
 import ImageList from "../../components/ImageList";
@@ -27,7 +28,7 @@ class Home extends Component {
   render() {
     const { storageRef, firebaseDatabaseRef, images } = this.state;
     return (
-      <div>
+      <div className="home_container">
         <Header
           storageRef={storageRef}
           firebaseDatabaseRef={firebaseDatabaseRef}

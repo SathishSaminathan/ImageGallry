@@ -34,7 +34,7 @@ class ImageList extends Component {
 
   render() {
     return (
-      <div>
+      <div className="image_list_container">
         <Header as="h1">Images</Header>
         <div className="images_area">{this.renderImage()}</div>
       </div>

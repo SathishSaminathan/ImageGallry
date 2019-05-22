@@ -1,6 +1,20 @@
+.image_list_container {
+  padding: 10px;
+  border: 10px solid #21ba45;
+  border-radius: 10px;
+  min-height: 100vh;
+  -webkit-box-shadow: 0 0 10px 0 #a99f9f;
+          box-shadow: 0 0 10px 0 #a99f9f;
+}
+
 .images_area {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 /*# sourceMappingURL=imagelist.css.map */
