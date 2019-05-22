@@ -5,14 +5,13 @@ import "./Header.css";
 
 class Header extends Component {
   state = {
-    storageRef:this.props.storageRef,
+    storageRef: this.props.storageRef,
     firebaseDatabaseRef: this.props.firebaseDatabaseRef,
     file: null,
     progress: 0,
     url: null,
+    loading: false
   };
-
-  
 
   handleChange = e => {
     this.setState(
@@ -25,40 +24,43 @@ class Header extends Component {
 
   uploadImage = () => {
     const { storageRef, file } = this.state;
-    const uploadImage = storageRef.child(this.state.file.name).put(file);
-    uploadImage.on(
-      "state_changed",
-      snapshot => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        this.setState({
-          progress
-        });
-      },
-      err => {
-        console.log(err);
-      },
-      completed => {
-        storageRef
-          .child(this.state.file.name)
-          .getDownloadURL()
-          .then(url => {
-            this.setState(
-              {
-                url
-              },
-              () => {
-                console.log("working!!!");
-                this.createImage(this.state.url);
-              }
-            );
+    if (file) {
+      this.setState({ loading: true });
+      const uploadImage = storageRef.child(this.state.file.name).put(file);
+      uploadImage.on(
+        "state_changed",
+        snapshot => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          this.setState({
+            progress
           });
+        },
+        err => {
+          console.log(err);
+        },
+        completed => {
+          storageRef
+            .child(this.state.file.name)
+            .getDownloadURL()
+            .then(url => {
+              this.setState(
+                {
+                  url
+                },
+                () => {
+                  console.log("working!!!");
+                  this.createImage(this.state.url);
+                }
+              );
+            });
 
-        console.log("completed");
-        this.setState({ progress: 0 });
-      }
-    );
+          console.log("completed");
+          this.setState({ progress: 0, loading: false });
+        }
+      );
+    }
   };
 
   createImage = url => {
@@ -69,7 +71,7 @@ class Header extends Component {
   };
 
   render() {
-    const { progress } = this.state;
+    const { progress, loading } = this.state;
     return (
       <React.Fragment>
         {progress > 0 && (
@@ -84,8 +86,10 @@ class Header extends Component {
         )}
         <div className="header_container">
           <div className="header">
-            <Input type="file" onChange={this.handleChange} />
-            <Button color="green" onClick={this.uploadImage}>
+            <div>
+              <Input type="file" onChange={this.handleChange} />
+            </div>
+            <Button color="green" onClick={this.uploadImage} loading={loading}>
               Upload
             </Button>
           </div>
