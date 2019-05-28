@@ -1,0 +1,17 @@
+.image_container {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: 0 10px 10px 10px;
+}
+
+.image_container a .image_style {
+  width: 300px;
+  height: 300px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 10px solid white;
+  -webkit-box-shadow: 0 0 15px 0px #cbc5c5;
+          box-shadow: 0 0 15px 0px #cbc5c5;
+}
+/*# sourceMappingURL=image.css.map */

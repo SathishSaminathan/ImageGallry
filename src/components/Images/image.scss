@@ -1,0 +1,17 @@
+.image_container {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  margin: 0 10px 10px 10px;
+  //   padding: 10px;
+  //   box-sizing: border-box;
+  a {
+    .image_style {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+      border: 10px solid white;
+      box-shadow: 0 0 15px 0px #cbc5c5;
+    }
+  }
+}
